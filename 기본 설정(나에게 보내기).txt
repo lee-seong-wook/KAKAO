@@ -1,0 +1,31 @@
+Kakao Developers를 사용하기 위한 설정
+
+카카오톡 메시지 송신을 위해서는 기본 설정을 몇가지 해줘야 합니다.(아나콘다가 설치된 VSCode를 기본으로 작성했습니다.)
+
+
+pip install PyKakao --upgrade를 터미널 창에서 설치합니다.
+
+
+Kakao Developers로 이동해 기존에 가지고 있던 카카오 아이디로 로그인해 이용약관을 수락합니다.
+메인화면의 시작하기 -> 애플리케이션 추가하기 -> 생성된 애플리케이션 클릭
+좌측의 요약정보에 들어가면 항목에있는 키들 중 있는 (Rest API키)를 사용할 것이기 때문에 따로 복사해서 저장해둡니다.
+
+
+좌측의 카카오 로그인항목에 들어가서 활성화 설정의 상태를 ON으로 바꿔줍니다.
+하단의 Redirect URI등록(Rest API를 사용하려면 필수로 설정해 줘야함)에서 https://example.com/oauth라는 사이트로 등록해줍니다.
+
+동의 항목에 들어가서 닉네임, 프로필 사진을 필수동의로 설정해주고 최하단으로 내려서 카카오톡 메시지 전송을 선택동의로 바꿔줍니다.
+
+
+이제 하단의 사이트주소에서 {REST_API_KEY}부분을 본인의 Rest API키로 {REDIRECT_URI} 부분을 https://example.com/oauth이 주소로 변경해 접속합니다.
+https://kauth.kakao.com/oauth/authorize?client_id={REST_API_KEY}&redirect_uri={REDIRECT_URI}&response_type=code
+
+
+동의란이 뜬다면 동의 진행해주시고 404에러 같은게 난다면 무언가 실수 하신것이기에 주소를 다시한번 확인해 주시면 됩니다.
+https://example.com/oauth?code=nebU8_sxh9VieKP************************************vOYsqT7Eq0gorDKYAAAGLA7Xbig
+이런식의 주소가 나올것인데 code=이후가 Access Token값이 됩니다.(Token은 카카오 정책때문인지 12시간동안만 유효함)
+
+Token_to_json.py의 코드로 json파일을 저장해 주시면 됩니다.
+
+
++웹사이트 전송을 위해 좌측 플렛폼 항목의 웹사이트 도메인을 따로 설정을 해 줬습니다.(https://google.com)
